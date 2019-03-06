@@ -23,6 +23,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
 
         final Intent intent = new Intent(this, GpsService.class);
-        /*this.getApplication().*/startForegroundService(intent);
+        startForegroundService(intent);
         this.getApplication().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
