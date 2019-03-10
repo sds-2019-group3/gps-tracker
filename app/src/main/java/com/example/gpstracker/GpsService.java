@@ -107,9 +107,9 @@ public class GpsService extends Service {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE, locationListener);
 
         } catch (java.lang.SecurityException ex) {
-            // Log.i(TAG, "fail to request location update, ignore", ex);
+             Log.i(TAG, "fail to request location update, ignore", ex);
         } catch (IllegalArgumentException ex) {
-            // Log.d(TAG, "gps provider does not exist " + ex.getMessage());
+             Log.d(TAG, "gps provider does not exist " + ex.getMessage());
         }
     }
 
