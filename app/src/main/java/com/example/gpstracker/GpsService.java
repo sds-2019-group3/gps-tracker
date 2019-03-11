@@ -20,7 +20,7 @@ public class GpsService extends Service {
     private LocationManager locationManager;
 
     // in ms
-    private final int LOCATION_INTERVAL = 1000*10;
+    private final int LOCATION_INTERVAL = 30 * 60 * 1000;
     private final int LOCATION_DISTANCE = 0;
 
     //@androidx.annotation.Nullable

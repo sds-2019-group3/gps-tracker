@@ -14,6 +14,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class HttpPostTask extends AsyncTask<String, String, String> {
 
@@ -37,10 +41,7 @@ public class HttpPostTask extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        //String urlString = params[0]; // URL to call
-        //String data = params[1]; //data to post
-        String urlString = "https://ptsv2.com/t/1mc22-1551179837/post" /*"http://52.56.153.134:8080/api/room/" + room + "/unlock"*/;
-        String data = "TODO" /*dataToPost*/;
+        String urlString = "http://sds.samchatfield.com/api/user/1234567/locations";
         OutputStream out = null;
 
         String response = "";
@@ -56,6 +57,7 @@ public class HttpPostTask extends AsyncTask<String, String, String> {
             conn.setDoInput(true);
 
             JSONObject jsonParam = new JSONObject();
+            jsonParam.put("time", getCurrentTime());
             jsonParam.put("latitude", location.getLatitude());
             jsonParam.put("longitude", location.getLongitude());
 //            jsonParam.put("studentId", dataToPost);
@@ -98,6 +100,13 @@ public class HttpPostTask extends AsyncTask<String, String, String> {
         }
 
         return outputText;
+    }
+
+    private String getCurrentTime() {
+        TimeZone tz = TimeZone.getTimeZone("UTC");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
+        df.setTimeZone(tz);
+        return df.format(new Date());
     }
 
     @Override
